@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Lister Todo List</title>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<!-- Add bootstrap cdn files -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.firebase.com/js/client/1.0.11/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+
+        <link href="stylesheets/style.css" rel="stylesheet" />
+        <script src="javascripts/todo.js"></script>
+
+        <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+	</head>
+
+	<body data-ng-app>
+		<div class="row" data-ng-controller="TodoCtrl" data-ng-init="init()">
+			<div class="col-sm-4 col-sm-offset-4" style="margin-top:25px;">
+				<div class="well">
+					<h3 class="text-center">Lister To-do List
+						<br>
+						<small><strong>Total:</strong> {{total()}}</small><br>
+						<small><strong>Pending:</strong> {{pending()}}</small><br>
+						<img src="images/loading.gif" class="hidden-{{loadinghidden}}">
+					</h3>
+					<button type="button" class="close hidden-{{clear}}" aria-hidden="true" data-ng-click="clearCompleted()">&times;</button>
+					<br>
+					<ul class="list-group">
+						<a data-ng-repeat="todo in todos" class="list-group-item done-{{todo.done}}" data-ng-click="toggle(todo)">
+							<h4>{{todo.text}}</h4>
+						</a>
+					</ul>
+
+					<form data-ng-submit="addTodo()">
+						<input class="form-control" placeholder="Get Milk..." data-ng-model="input"/>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
